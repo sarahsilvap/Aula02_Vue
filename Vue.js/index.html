@@ -1,0 +1,71 @@
+<!DOCTYPE html> <!-- Declara o tipo de documento e a versão do HTML -->
+<html lang="en"> <!-- Define o idioma da página como português -->
+<head> <!-- Cabeçalho da página contém metadados e links para recursos externos -->
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8, que suporta a maioria dos caracteres e símbolos internacionais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a visualização para dispositivos móveis, garantindo que a página seja responsiva e ajuste seu tamanho à largura da tela -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> 
+    <title>Exercício Vue.js</title> <!-- Define o título da página, que aparece na aba do navegador -->
+</head>
+<body> <!-- O corpo da página contém o conteúdo visível da página -->
+    <div> 
+        <h1>Exercícios Práticos</h1>
+    </div>
+
+<body>
+    <div id="app">
+        <h2>Exercício 1: Contador de Cliques</h2>
+        <h1>Contador: {{ count }}</h1>
+        <button class="increment" @click="increment">+</button>
+        <button class="decrement" @click="decrement">-</button>
+
+        <h2>Exercício 2: Mostrar/Ocultar Texto</h2>
+        <button class="toggle" @click="toggleTexto">{{ textoVisivel ? 'Apareceu' : 'Clique' }} Aqui</button>
+        <p v-if="textoVisivel">Aula de Front-End</p>
+
+        <h2>Exercício 3: Lista Dinâmica</h2>
+        <input v-model="novoItem" placeholder="Adicionar um item" />
+        <button class="add" @click="adicionarItem">Adicionar</button>
+        <ul>
+            <li v-for="(item, index) in itens" :key="index">
+                {{ item }}
+                <button @click="removerItem(index)">Remover</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+                textoVisivel: false,
+                novoItem: '',
+                itens: []
+            },
+            methods: {
+                increment() {
+                    this.count += 1;
+                },
+                decrement() {
+                    this.count -= 1;
+                },
+                toggleTexto() {
+                    this.textoVisivel = !this.textoVisivel;
+                },
+                adicionarItem() {
+                    if (this.novoItem.trim() !== '') {
+                        this.itens.push(this.novoItem);
+                        this.novoItem = '';
+                    }
+                },
+                removerItem(index) {
+                    this.itens.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
